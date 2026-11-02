@@ -155,31 +155,7 @@ body main #sidebar nav .top {
 @media (max-width: 900px) {
   body main #sidebar nav .top {
     flex-direction: row;
-    justify-content: space-between;
     width: 100%;
-    gap: 12px;
-  }
-}
-body main #sidebar nav .top .logo {
-  display: flex;
-}
-body main #sidebar nav .top .logo a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 48px;
-  width: 48px;
-  border-radius: 9999px;
-  background: #0A0A0A;
-  color: white;
-  font-size: 18px;
-  text-decoration: none;
-}
-@media (max-width: 900px) {
-  body main #sidebar nav .top .logo a {
-    height: 40px;
-    width: 40px;
-    font-size: 16px;
   }
 }
 body main #sidebar nav .top ul {
@@ -190,6 +166,8 @@ body main #sidebar nav .top ul {
 @media (max-width: 900px) {
   body main #sidebar nav .top ul {
     flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
     gap: 4px;
   }
 }
@@ -244,9 +222,6 @@ body main #sidebar nav .top ul li a[aria-current=page] {
   body main #sidebar.cache {
     transform: translateY(-100%);
   }
-  body main #sidebar .logo a {
-    transition: transform 200ms ease;
-  }
   body main #sidebar ul li a {
     -webkit-tap-highlight-color: transparent;
     transition: background-color 250ms ease, color 250ms ease, transform 200ms cubic-bezier(0.3, 1.6, 0.5, 1);
@@ -256,9 +231,6 @@ body main #sidebar nav .top ul li a[aria-current=page] {
   }
   body main #sidebar ul li a:not([aria-current]):active {
     background: rgba(10, 10, 10, 0.06);
-  }
-  body main #sidebar .logo a:active {
-    transform: scale(0.9);
   }
   body main #sidebar a[aria-current=page] {
     animation: navActive 450ms cubic-bezier(0.3, 1.6, 0.5, 1) both;

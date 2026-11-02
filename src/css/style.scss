@@ -99,29 +99,7 @@ body {
           gap: 48px;
           @media (max-width: $mobile) {
             flex-direction: row;
-            justify-content: space-between;
             width: 100%;
-            gap: 12px;
-          }
-          .logo {
-            display: flex;
-            a {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 48px;
-              width: 48px;
-              border-radius: 9999px;
-              background: $black;
-              color: white;
-              font-size: 18px;
-              text-decoration: none;
-              @media (max-width: $mobile) {
-                height: 40px;
-                width: 40px;
-                font-size: 16px;
-              }
-            }
           }
           ul {
             display: flex;
@@ -129,6 +107,8 @@ body {
             gap: 24px;
             @media (max-width: $mobile) {
               flex-direction: row;
+              justify-content: space-around;
+              width: 100%;
               gap: 4px;
             }
             li {
@@ -183,9 +163,6 @@ body {
         &.cache {
           transform: translateY(-100%);
         }
-        .logo a {
-          transition: transform 200ms ease;
-        }
         ul li a {
           -webkit-tap-highlight-color: transparent;
           transition: background-color 250ms ease, color 250ms ease, transform 200ms cubic-bezier(0.3, 1.6, 0.5, 1);
@@ -195,9 +172,6 @@ body {
           &:not([aria-current]):active {
             background: rgba(10, 10, 10, 0.06);
           }
-        }
-        .logo a:active {
-          transform: scale(0.9);
         }
         a[aria-current="page"] {
           animation: navActive 450ms cubic-bezier(0.3, 1.6, 0.5, 1) both;
