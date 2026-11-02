@@ -60,10 +60,6 @@ body {
       height: 100vh;
       z-index: 10;
       @media (max-width: $mobile) {
-        position: fixed;
-        top: auto;
-        bottom: 0;
-        left: 0;
         width: 100%;
         height: auto;
       }
@@ -80,9 +76,9 @@ body {
         @media (max-width: $mobile) {
           height: auto;
           width: 100%;
-          padding: 8px max(16px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+          padding: calc(8px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left));
           border-right: none;
-          border-top: 1px solid $border;
+          border-bottom: 1px solid $border;
         }
         .top {
           display: flex;
@@ -91,13 +87,13 @@ body {
           align-items: center;
           gap: 48px;
           @media (max-width: $mobile) {
+            flex-direction: row;
+            justify-content: space-between;
             width: 100%;
+            gap: 12px;
           }
           .logo {
             display: flex;
-            @media (max-width: $mobile) {
-              display: none;
-            }
             a {
               display: flex;
               justify-content: center;
@@ -109,6 +105,11 @@ body {
               color: white;
               font-size: 18px;
               text-decoration: none;
+              @media (max-width: $mobile) {
+                height: 40px;
+                width: 40px;
+                font-size: 16px;
+              }
             }
           }
           ul {
@@ -117,9 +118,7 @@ body {
             gap: 24px;
             @media (max-width: $mobile) {
               flex-direction: row;
-              justify-content: space-around;
-              width: 100%;
-              gap: 8px;
+              gap: 4px;
             }
             li {
               display: flex;
@@ -136,7 +135,8 @@ body {
                 padding: 14px;
                 border-radius: 14px;
                 @media (max-width: $mobile) {
-                  padding: 12px;
+                  padding: 10px;
+                  border-radius: 12px;
                 }
               }
             }
@@ -156,7 +156,7 @@ body {
       min-width: 0;
       padding-bottom: 64px;
       @media (max-width: $mobile) {
-        padding: env(safe-area-inset-top) env(safe-area-inset-right) calc(120px + env(safe-area-inset-bottom)) env(safe-area-inset-left);
+        padding: 0 env(safe-area-inset-right) calc(48px + env(safe-area-inset-bottom)) env(safe-area-inset-left);
       }
       .mainContent {
         display: flex;
@@ -190,7 +190,7 @@ body {
             font-style: normal;
             font-weight: 400;
             @media (max-width: $mobile) {
-              font-size: clamp(36px, 13vw, 96px);
+              font-size: clamp(36px, min(13vw, 14vh), 96px);
             }
             span {
               display: block;

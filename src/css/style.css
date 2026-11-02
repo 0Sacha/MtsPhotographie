@@ -111,10 +111,6 @@ body main #sidebar {
 }
 @media (max-width: 900px) {
   body main #sidebar {
-    position: fixed;
-    top: auto;
-    bottom: 0;
-    left: 0;
     width: 100%;
     height: auto;
   }
@@ -134,9 +130,9 @@ body main #sidebar nav {
   body main #sidebar nav {
     height: auto;
     width: 100%;
-    padding: 8px max(16px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    padding: calc(8px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left));
     border-right: none;
-    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
   }
 }
 body main #sidebar nav .top {
@@ -148,16 +144,14 @@ body main #sidebar nav .top {
 }
 @media (max-width: 900px) {
   body main #sidebar nav .top {
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
+    gap: 12px;
   }
 }
 body main #sidebar nav .top .logo {
   display: flex;
-}
-@media (max-width: 900px) {
-  body main #sidebar nav .top .logo {
-    display: none;
-  }
 }
 body main #sidebar nav .top .logo a {
   display: flex;
@@ -171,6 +165,13 @@ body main #sidebar nav .top .logo a {
   font-size: 18px;
   text-decoration: none;
 }
+@media (max-width: 900px) {
+  body main #sidebar nav .top .logo a {
+    height: 40px;
+    width: 40px;
+    font-size: 16px;
+  }
+}
 body main #sidebar nav .top ul {
   display: flex;
   flex-direction: column;
@@ -179,9 +180,7 @@ body main #sidebar nav .top ul {
 @media (max-width: 900px) {
   body main #sidebar nav .top ul {
     flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    gap: 8px;
+    gap: 4px;
   }
 }
 body main #sidebar nav .top ul li {
@@ -202,7 +201,8 @@ body main #sidebar nav .top ul li img {
 }
 @media (max-width: 900px) {
   body main #sidebar nav .top ul li img {
-    padding: 12px;
+    padding: 10px;
+    border-radius: 12px;
   }
 }
 body main #sidebar nav .top ul li:hover {
@@ -219,7 +219,7 @@ body main section {
 }
 @media (max-width: 900px) {
   body main section {
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) calc(120px + env(safe-area-inset-bottom)) env(safe-area-inset-left);
+    padding: 0 env(safe-area-inset-right) calc(48px + env(safe-area-inset-bottom)) env(safe-area-inset-left);
   }
 }
 body main section .mainContent {
@@ -256,7 +256,7 @@ body main section .mainContent .informations h1 {
 }
 @media (max-width: 900px) {
   body main section .mainContent .informations h1 {
-    font-size: clamp(36px, 13vw, 96px);
+    font-size: clamp(36px, min(13vw, 14vh), 96px);
   }
 }
 body main section .mainContent .informations h1 span {
