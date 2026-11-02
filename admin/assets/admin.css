@@ -1,0 +1,841 @@
+/* Dashboard MTS Photographie : mêmes couleurs et même typographie que le site */
+:root {
+    --noir: #0A0A0A;
+    --blanc: #FEFEFE;
+    --fond: #FAFAF9;
+    --gris: #8A8A8A;
+    --gris-texte: #6A6A6A;
+    --bordure: #E5E5E5;
+    --accent: #3F6B47;
+    --accent-clair: #E8F0EA;
+    --rouge: #B42318;
+    --rouge-clair: #FDECEA;
+    --rayon: 14px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--fond);
+    color: var(--noir);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    font-weight: 400;
+}
+
+a {
+    color: inherit;
+}
+
+code {
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: var(--bordure);
+    font-size: 13px;
+}
+
+/* ---------- Mise en page ---------- */
+
+.admin {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-barre {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 240px;
+    height: 100vh;
+    padding: 28px 16px;
+    border-right: 1px solid var(--bordure);
+    background: var(--blanc);
+}
+
+.admin-marque {
+    padding: 0 12px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.admin-marque span {
+    display: block;
+    color: var(--gris);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.admin-menu a,
+.admin-pied a,
+.admin-pied button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border: none;
+    border-radius: 12px;
+    background: none;
+    color: var(--gris-texte);
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 200ms ease, color 200ms ease;
+}
+
+.admin-menu a i,
+.admin-pied i {
+    width: 18px;
+    text-align: center;
+}
+
+.admin-menu a:hover,
+.admin-pied a:hover,
+.admin-pied button:hover {
+    background: var(--fond);
+    color: var(--noir);
+}
+
+.admin-menu a[aria-current="page"] {
+    background: var(--noir);
+    color: var(--blanc);
+}
+
+.admin-pied {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 16px;
+    border-top: 1px solid var(--bordure);
+}
+
+.admin-pied form {
+    margin: 0;
+}
+
+.admin-pied button {
+    width: 100%;
+}
+
+.admin-utilisateur {
+    padding: 4px 12px 8px;
+    color: var(--gris);
+    font-size: 13px;
+}
+
+.admin-contenu {
+    flex: 1;
+    min-width: 0;
+    padding: 40px clamp(16px, 4vw, 48px) 64px;
+}
+
+.admin-entete {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.admin-entete h1 {
+    font-size: clamp(28px, 4vw, 40px);
+}
+
+.surtitre {
+    margin: 0 0 6px;
+    color: var(--gris);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.section {
+    margin-top: 40px;
+}
+
+.section > h2 {
+    margin-bottom: 16px;
+    font-size: 22px;
+}
+
+@media (max-width: 900px) {
+    .admin {
+        flex-direction: column;
+    }
+
+    .admin-barre {
+        z-index: 10;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        height: auto;
+        padding: calc(8px + env(safe-area-inset-top)) 12px 8px;
+        border-right: none;
+        border-bottom: 1px solid var(--bordure);
+        overflow-x: auto;
+    }
+
+    .admin-marque,
+    .admin-utilisateur,
+    .admin-menu a span,
+    .admin-pied a span,
+    .admin-pied button span {
+        display: none;
+    }
+
+    .admin-menu,
+    .admin-pied {
+        flex-direction: row;
+        padding: 0;
+        border: none;
+    }
+
+    .admin-menu {
+        flex: 1;
+        justify-content: space-around;
+    }
+
+    .admin-menu a,
+    .admin-pied a,
+    .admin-pied button {
+        padding: 12px;
+    }
+
+    .admin-contenu {
+        padding-top: 24px;
+    }
+}
+
+/* ---------- Composants ---------- */
+
+.carte {
+    padding: 24px;
+    border: 1px solid var(--bordure);
+    border-radius: 16px;
+    background: var(--blanc);
+}
+
+.bouton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border: 1px solid var(--noir);
+    border-radius: 9999px;
+    background: var(--noir);
+    color: var(--blanc);
+    font: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.bouton:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+.bouton:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.bouton-secondaire {
+    border-color: var(--bordure);
+    background: var(--blanc);
+    color: var(--noir);
+}
+
+.bouton-secondaire:hover {
+    border-color: var(--noir);
+    background: var(--blanc);
+}
+
+.bouton-danger {
+    border-color: var(--bordure);
+    background: var(--blanc);
+    color: var(--rouge);
+}
+
+.bouton-danger:hover,
+.bouton-danger.confirmer {
+    border-color: var(--rouge);
+    background: var(--rouge);
+    color: var(--blanc);
+}
+
+.bouton-icone {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+}
+
+.alerte {
+    margin: 0 0 16px;
+    padding: 12px 16px;
+    border-radius: 12px;
+}
+
+.alerte-succes {
+    background: var(--accent-clair);
+    color: var(--accent);
+}
+
+.alerte-erreur {
+    background: var(--rouge-clair);
+    color: var(--rouge);
+}
+
+.aide {
+    margin: 0;
+    color: var(--gris-texte);
+    font-size: 14px;
+}
+
+.vide {
+    padding: 32px;
+    color: var(--gris);
+    text-align: center;
+}
+
+/* Formulaires */
+.formulaire {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.formulaire fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0;
+    padding: 20px;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+}
+
+.formulaire legend {
+    padding: 0 8px;
+    color: var(--gris);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--gris-texte);
+    font-size: 13px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--bordure);
+    border-radius: 10px;
+    background: var(--blanc);
+    color: var(--noir);
+    font: inherit;
+    transition: border-color 200ms ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--noir);
+    outline: none;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.ligne-champs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Interrupteur (case à cocher stylée) */
+.interrupteur {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: var(--noir);
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.interrupteur input {
+    position: relative;
+    width: 34px;
+    height: 20px;
+    margin: 0;
+    border-radius: 9999px;
+    background: var(--bordure);
+    appearance: none;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+}
+
+.interrupteur input::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--blanc);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 200ms ease;
+}
+
+.interrupteur input:checked {
+    background: var(--accent);
+}
+
+.interrupteur input:checked::after {
+    transform: translateX(14px);
+}
+
+/* Tableaux */
+.tableau {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableau th,
+.tableau td {
+    padding: 12px;
+    border-bottom: 1px solid var(--bordure);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.tableau th {
+    color: var(--gris);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.tableau tr:last-child td {
+    border-bottom: none;
+}
+
+.defilable {
+    overflow-x: auto;
+}
+
+/* ---------- Tableau de bord ---------- */
+
+.grille-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+}
+
+.stat .valeur {
+    display: block;
+    margin-top: 8px;
+    font-size: 34px;
+}
+
+.stat .detail {
+    color: var(--gris);
+    font-size: 13px;
+}
+
+.graphique svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.graphique .barre {
+    fill: var(--noir);
+    transition: fill 150ms ease;
+}
+
+.graphique .barre:hover {
+    fill: var(--accent);
+}
+
+.graphique .axe {
+    fill: var(--gris);
+    font-size: 11px;
+}
+
+.graphique .grille {
+    stroke: var(--bordure);
+}
+
+.grille-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.classement {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.classement li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 12px;
+    align-items: center;
+}
+
+.classement .jauge {
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--fond);
+    overflow: hidden;
+}
+
+.classement .jauge span {
+    display: block;
+    height: 100%;
+    border-radius: 9999px;
+    background: var(--accent);
+}
+
+.classement .nombre {
+    color: var(--gris-texte);
+    font-size: 13px;
+}
+
+.classement-photos li {
+    grid-template-columns: 56px 1fr auto;
+}
+
+.classement-photos img {
+    width: 56px;
+    height: 42px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.etat {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px 24px;
+    margin: 0;
+}
+
+.etat div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--bordure);
+}
+
+.etat dt {
+    color: var(--gris-texte);
+}
+
+.etat dd {
+    margin: 0;
+    text-align: right;
+}
+
+.ok {
+    color: var(--accent);
+}
+
+.ko {
+    color: var(--rouge);
+}
+
+/* ---------- Photos ---------- */
+
+.depot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 32px;
+    border: 2px dashed var(--bordure);
+    border-radius: 16px;
+    background: var(--fond);
+    color: var(--gris-texte);
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.depot i {
+    color: var(--gris);
+    font-size: 28px;
+}
+
+.depot.survol,
+.depot:hover {
+    border-color: var(--accent);
+    background: var(--accent-clair);
+}
+
+.depot input {
+    display: none;
+}
+
+.apercu-envoi {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.apercu-envoi img {
+    width: 72px;
+    height: 72px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.photos-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.photo-carte {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--bordure);
+    border-radius: 16px;
+    background: var(--blanc);
+    overflow: hidden;
+    transition: box-shadow 200ms ease, opacity 200ms ease, transform 200ms ease;
+}
+
+.photo-carte.glisse {
+    opacity: 0.4;
+}
+
+.photo-carte.cible {
+    box-shadow: 0 0 0 3px var(--accent);
+}
+
+.photo-carte.masquee .vignette img {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.vignette {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--fond);
+    cursor: grab;
+}
+
+.vignette img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 200ms ease, filter 200ms ease;
+}
+
+.vignette .numero {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 2px 10px;
+    border-radius: 9999px;
+    background: rgba(10, 10, 10, 0.7);
+    color: var(--blanc);
+    font-size: 12px;
+}
+
+.vignette .vues {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 2px 10px;
+    border-radius: 9999px;
+    background: rgba(254, 254, 254, 0.9);
+    font-size: 12px;
+}
+
+.photo-carte .corps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+}
+
+.photo-carte .interrupteurs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+}
+
+.photo-carte .bas {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.enregistre {
+    border-color: var(--accent) !important;
+}
+
+/* Notification en bas de l'écran */
+.toast {
+    position: fixed;
+    bottom: calc(24px + env(safe-area-inset-bottom));
+    left: 50%;
+    z-index: 100;
+    padding: 12px 20px;
+    border-radius: 9999px;
+    background: var(--noir);
+    color: var(--blanc);
+    font-size: 14px;
+    opacity: 0;
+    transform: translate(-50%, 16px);
+    transition: opacity 250ms ease, transform 250ms ease;
+    pointer-events: none;
+}
+
+.toast.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.toast.erreur {
+    background: var(--rouge);
+}
+
+/* ---------- Connexion / installation ---------- */
+
+.page-connexion {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 24px 16px;
+}
+
+.carte-connexion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.carte-large {
+    max-width: 560px;
+}
+
+.carte-connexion h1 {
+    font-size: 30px;
+}
+
+.verifications {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+}
+
+.verifications i {
+    width: 18px;
+}
+
+/* Liste ordonnable (catégories, services) */
+.liste-ordonnee {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.element {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 12px;
+}
+
+.element > label {
+    flex: 1;
+    min-width: 180px;
+}
+
+.ordre {
+    display: flex;
+    gap: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: 1ms !important;
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* Boutons des cartes photo toujours alignés en bas */
+.photo-carte .corps {
+    flex: 1;
+}
+
+.photo-carte .bas {
+    margin-top: auto;
+}
