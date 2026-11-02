@@ -40,6 +40,7 @@ Pour les mises à jour suivantes, renvoyer seulement les fichiers modifiés par 
 | Catégories | Filtres du portfolio : ajout, renommage, ordre, suppression |
 | Contenus | Textes de chaque page et cartes de services |
 | Comptes | Ajout et suppression de comptes, changement de mot de passe |
+| Maintenance (barre latérale) | Met le site en pause : les visiteurs voient une page d'attente (code 503), les administrateurs connectés voient le site normalement |
 
 Les statistiques sont anonymes : pas de cookie, aucune adresse IP enregistrée, robots et administrateurs connectés non comptés, données effacées après 13 mois.
 

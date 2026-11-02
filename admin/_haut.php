@@ -9,6 +9,7 @@ $menu = [
     'contenus'   => ['contenus.php', 'Contenus', 'fa-pen-to-square'],
     'comptes'    => ['comptes.php', 'Comptes', 'fa-users'],
 ];
+$enMaintenance = maintenance_active();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -32,6 +33,16 @@ $menu = [
         </nav>
         <div class="admin-pied">
             <p class="admin-utilisateur">Connecté : <strong><?= e($utilisateur['username']) ?></strong></p>
+            <form method="post" action="maintenance.php">
+                <?= champ_csrf() ?>
+                <input type="hidden" name="retour" value="<?= e($menu[$section][0] ?? 'index.php') ?>">
+                <input type="hidden" name="etat" value="<?= $enMaintenance ? '0' : '1' ?>">
+                <button type="submit" class="bascule-maintenance<?= $enMaintenance ? ' actif' : '' ?>"
+                        title="<?= $enMaintenance ? 'Remettre le site en ligne' : 'Mettre le site en maintenance' ?>"
+                        aria-pressed="<?= $enMaintenance ? 'true' : 'false' ?>"<?= $enMaintenance ? '' : ' data-confirmer' ?>>
+                    <i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance</span><span class="mini-interrupteur" aria-hidden="true"></span>
+                </button>
+            </form>
             <a href="../index.php" target="_blank" rel="noopener" title="Voir le site"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Voir le site</span></a>
             <form method="post" action="logout.php">
                 <?= champ_csrf() ?>
@@ -40,6 +51,9 @@ $menu = [
         </div>
     </header>
     <main class="admin-contenu">
+<?php if ($enMaintenance): ?>
+        <p class="alerte alerte-maintenance"><i class="fa-solid fa-screwdriver-wrench"></i> Le site est en maintenance : les visiteurs voient une page d'attente. Vous seuls, connectés, voyez le site normalement.</p>
+<?php endif; ?>
 <?php foreach (flashs() as $message): ?>
         <p class="alerte alerte-<?= e($message['type']) ?>"><?= e($message['message']) ?></p>
 <?php endforeach; ?>

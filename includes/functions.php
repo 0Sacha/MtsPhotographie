@@ -40,17 +40,90 @@ function e(mixed $texte): string
     return htmlspecialchars((string) $texte, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-/** Page d'erreur simple quand la base est inaccessible */
+/**
+ * Page « Site en maintenance ».
+ * Code HTTP 503 + Retry-After : Google comprend que c'est temporaire et ne retire pas le site des résultats.
+ */
+function page_maintenance(string $detail = ''): never
+{
+    // Nom et e-mail affichés si la base répond, sinon valeurs de secours
+    try {
+        $nom = setting('site_nom');
+        $email = setting('contact_email');
+    } catch (Throwable) {
+        $nom = 'MTS Photographie';
+        $email = '';
+    }
+
+    http_response_code(503);
+    header('Retry-After: 3600');
+    header('Content-Type: text/html; charset=utf-8');
+    header('X-Robots-Tag: noindex');
+    ?>
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Maintenance – <?= e($nom) ?></title>
+    <style>
+        body { display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 24px; box-sizing: border-box; background: #FAFAF9; color: #0A0A0A; font-family: Arial, Helvetica, sans-serif; text-align: center; }
+        .icone { display: inline-grid; place-items: center; width: 64px; height: 64px; margin-bottom: 24px; border-radius: 18px; background: #0A0A0A; }
+        p.surtitre { margin: 0 0 12px; color: #8A8A8A; font-size: 13px; letter-spacing: 4px; text-transform: uppercase; }
+        h1 { margin: 0 0 16px; font-size: clamp(32px, 7vw, 56px); font-weight: 400; }
+        p { max-width: 460px; margin: 0 auto; color: #6A6A6A; font-size: 18px; line-height: 1.5; }
+        a { color: #3F6B47; }
+        pre { max-width: 90vw; margin-top: 24px; color: #B42318; text-align: left; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <main>
+        <span class="icone" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FEFEFE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+        </span>
+        <p class="surtitre"><?= e($nom) ?></p>
+        <h1>Site en maintenance</h1>
+        <p>Le site se refait une beauté. Revenez dans quelques instants.</p>
+<?php if ($email !== ''): ?>
+        <p style="margin-top:16px;font-size:15px">Une question ? <a href="mailto:<?= e($email) ?>"><?= e($email) ?></a></p>
+<?php endif; ?>
+<?php if ($detail !== ''): ?>
+        <pre><?= e($detail) ?></pre>
+<?php endif; ?>
+    </main>
+</body>
+</html>
+<?php
+    exit;
+}
+
+/** Erreur technique (base inaccessible…) : journalise puis affiche la page de maintenance */
 function maintenance(Throwable $erreur): never
 {
     error_log('[MTS] ' . $erreur->getMessage());
-    http_response_code(503);
-    echo '<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
-        . '<title>Maintenance</title><body style="font-family:Arial,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;background:#FAFAF9;color:#0A0A0A">'
-        . '<div style="text-align:center;padding:24px"><h1 style="font-weight:400">Site en maintenance</h1><p style="color:#6A6A6A">Revenez dans quelques instants.</p>'
-        . (config('debug') ? '<pre style="text-align:left;color:#b00">' . e($erreur->getMessage()) . '</pre>' : '')
-        . '</div></body></html>';
-    exit;
+    page_maintenance(config('debug') ? $erreur->getMessage() : '');
+}
+
+/** Le mode maintenance est-il activé depuis le dashboard ? */
+function maintenance_active(): bool
+{
+    try {
+        return setting('maintenance') === '1';
+    } catch (Throwable) {
+        return false;
+    }
+}
+
+/** Un administrateur est-il connecté ? (sans ouvrir de session pour les simples visiteurs) */
+function admin_connecte(): bool
+{
+    if (!isset($_COOKIE['mts_admin'])) {
+        return false;
+    }
+    demarrer_session();
+    $connecte = !empty($_SESSION['user_id']);
+    session_write_close();
+    return $connecte;
 }
 
 /* ---------------------------------------------------------------

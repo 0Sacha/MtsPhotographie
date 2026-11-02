@@ -11,6 +11,13 @@ $navigation = [
     'contact'   => ['contact.php', 'Contact', 'fa-envelope'],
 ];
 $urlSite = rtrim((string) config('url', ''), '/');
+
+// Mode maintenance : les visiteurs voient la page d'attente, les administrateurs connectés voient le site
+$enMaintenance = maintenance_active();
+$adminConnecte = $enMaintenance && admin_connecte();
+if ($enMaintenance && !$adminConnecte) {
+    page_maintenance();
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -32,6 +39,12 @@ $urlSite = rtrim((string) config('url', ''), '/');
 </head>
 
 <body data-page="<?= e($page) ?>">
+<?php if ($enMaintenance): ?>
+    <div role="status" style="position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));z-index:100;transform:translateX(-50%);display:flex;align-items:center;gap:12px;width:max-content;max-width:calc(100vw - 32px);box-sizing:border-box;padding:10px 12px 10px 18px;border-radius:18px;background:#B42318;color:#FEFEFE;font-size:14px;line-height:1.3;box-shadow:0 8px 24px rgba(10,10,10,.2)">
+        <i class="fa-solid fa-screwdriver-wrench"></i><span>Maintenance active : les visiteurs voient la page d'attente</span>
+        <a href="admin/" style="flex-shrink:0;padding:6px 12px;border-radius:9999px;background:#FEFEFE;color:#B42318;text-decoration:none">Dashboard</a>
+    </div>
+<?php endif; ?>
     <main>
         <div id="sidebar">
             <nav>

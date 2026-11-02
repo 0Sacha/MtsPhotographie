@@ -839,3 +839,54 @@ textarea {
 .photo-carte .bas {
     margin-top: auto;
 }
+
+/* Interrupteur du mode maintenance (barre latérale) */
+.admin-pied .bascule-maintenance .mini-interrupteur {
+    position: relative;
+    flex-shrink: 0;
+    width: 30px;
+    height: 18px;
+    margin-left: auto;
+    border-radius: 9999px;
+    background: var(--bordure);
+    transition: background-color 200ms ease;
+}
+
+.admin-pied .bascule-maintenance .mini-interrupteur::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--blanc);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 200ms ease;
+}
+
+.admin-pied .bascule-maintenance.actif {
+    background: var(--rouge-clair);
+    color: var(--rouge);
+}
+
+.admin-pied .bascule-maintenance.actif .mini-interrupteur {
+    background: var(--rouge);
+}
+
+.admin-pied .bascule-maintenance.actif .mini-interrupteur::after {
+    transform: translateX(12px);
+}
+
+.admin-pied .bascule-maintenance.confirmer {
+    background: var(--rouge);
+    color: var(--blanc);
+}
+
+.alerte-maintenance {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--rouge-clair);
+    color: var(--rouge);
+}
