@@ -140,6 +140,7 @@ body main #sidebar nav {
   body main #sidebar nav {
     height: auto;
     width: 100%;
+    flex-direction: row;
     padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
     border-right: none;
     border-bottom: 1px solid #E5E5E5;
@@ -148,6 +149,11 @@ body main #sidebar nav {
 body main #sidebar nav .top {
   display: flex;
   width: 100%;
+}
+@media (max-width: 900px) {
+  body main #sidebar nav .top {
+    flex: 1;
+  }
 }
 body main #sidebar nav .top ul {
   display: flex;
@@ -208,6 +214,65 @@ body main #sidebar nav .top ul li a[aria-current=page] i {
   background: #0A0A0A;
   color: #FEFEFE;
 }
+body main #sidebar .acces-admin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 56px;
+  color: #C9C9C9;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 250ms ease, height 300ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 900px) {
+  body main #sidebar .acces-admin {
+    flex-shrink: 0;
+    width: 44px;
+    font-size: 13px;
+  }
+}
+body main #sidebar .acces-admin:hover,
+body main #sidebar .acces-admin:focus-visible {
+  color: #0A0A0A;
+}
+body main #sidebar .acces-admin.connecte {
+  height: 72px;
+  color: #3F6B47;
+  font-size: 18px;
+}
+@media (max-width: 900px) {
+  body main #sidebar .acces-admin.connecte {
+    width: 56px;
+    height: 56px;
+    font-size: 17px;
+  }
+}
+body main #sidebar .acces-admin.connecte i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(63, 107, 71, 0.12);
+  transition: background-color 250ms ease, color 250ms ease, transform 200ms cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+@media (max-width: 900px) {
+  body main #sidebar .acces-admin.connecte i {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+}
+body main #sidebar .acces-admin.connecte:hover i, body main #sidebar .acces-admin.connecte:focus-visible i {
+  background: #3F6B47;
+  color: #FEFEFE;
+}
+body main #sidebar .acces-admin.connecte:active i {
+  transform: scale(0.88);
+}
 @media (max-width: 900px) {
   body main #sidebar {
     transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -226,7 +291,7 @@ body main #sidebar nav .top ul li a[aria-current=page] i {
     border-bottom-color: #E5E5E5;
     box-shadow: 0 6px 24px rgba(10, 10, 10, 0.06);
   }
-  body main #sidebar.defile nav .top ul li a {
+  body main #sidebar.defile nav .top ul li a, body main #sidebar.defile nav .acces-admin {
     height: 48px;
   }
   body main #sidebar.cache {

@@ -14,7 +14,7 @@ $urlSite = rtrim((string) config('url', ''), '/');
 
 // Mode maintenance : les visiteurs voient la page d'attente, les administrateurs connectés voient le site
 $enMaintenance = maintenance_active();
-$adminConnecte = $enMaintenance && admin_connecte();
+$adminConnecte = admin_connecte();
 if ($enMaintenance && !$adminConnecte) {
     page_maintenance();
 }
@@ -59,5 +59,10 @@ if ($enMaintenance && !$adminConnecte) {
 <?php endforeach; ?>
                     </ul>
                 </div>
+<?php if ($adminConnecte): ?>
+                <a class="acces-admin connecte" href="admin/" aria-label="Dashboard" title="Dashboard"><i class="fa-regular fa-chart-bar"></i></a>
+<?php else: ?>
+                <a class="acces-admin" href="admin/" aria-label="Connexion à l'administration" title="Administration" rel="nofollow"><i class="fa-solid fa-lock"></i></a>
+<?php endif; ?>
             </nav>
         </div>
