@@ -1,47 +1,106 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="src/css/style.css">
-    <title>MTS Photographie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <title>Portfolio - MTS Photographie</title>
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="src/js/main.js" defer></script>
 </head>
+
 <body>
-<main>
-<div id="sidebar">
-    <nav>
-        <div class="top">
-            <div class="logo">
-                <li>
-                    <p href="">M</p>
-                </li>
+    <main>
+        <div id="sidebar">
+            <nav>
+                <div class="top">
+                    <div class="logo">
+                        <a href="index.html" aria-label="Accueil">M</a>
+                    </div>
+                    <ul>
+                        <li><a href="index.html" aria-label="Accueil"><img src="src/img/icon/houseUnselected.svg" alt=""></a></li>
+                        <li><a href="#" aria-label="Portfolio" aria-current="page"><img id="active" src="src/img/icon/bagSelected.svg" alt=""></a></li>
+                        <li><a href="services.html" aria-label="Services"><img src="src/img/icon/cameraUnselected.svg" alt=""></a></li>
+                        <li><a href="about.html" aria-label="À propos"><img src="src/img/icon/userUnselected.svg" alt=""></a></li>
+                        <li><a href="contact.html" aria-label="Contact"><img src="src/img/icon/mailUnselected.svg" alt=""></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <section>
+            <div class="mainContent">
+                <div class="portfolio">
+                    <p class="surtitre">GALERIE</p>
+                    <h1>Portfolio Photo</h1>
+                    <p>Montagnes, forêts, faune sauvage et portraits en lumière naturelle. Cliquez sur une photo pour l'afficher en grand.</p>
+                </div>
+                <div class="filtres">
+                    <button class="actif" data-filtre="tout">Tout <span></span></button>
+                    <button data-filtre="nature">Nature <span></span></button>
+                    <button data-filtre="portrait">Portraits <span></span></button>
+                </div>
             </div>
-            <ul>
-                <li><a href="index.html"><img src="src/img/icon/houseUnselected.svg"></a></li>
-                <li><a href="#"><img id="active" src="src/img/icon/bagSelected.svg"></a></li>
-                <!-- <li><a href="about.html"><img src="src/img/icon/userUnselected.svg"></a></li> -->
-                <!-- <li><a href="contact.html"><img src="src/img/icon/mailUnselected.svg"></a></li> -->
-            </ul>
-        </div>
-    </nav>
-</div>
-<section>
-    <div class="mainContent">
-        <div class="portfolio">
-            <h1>Portfolio Photo</h1>
-        </div>
-    </div>
-    <div class="photo">
-        <img src="./src/img/NatureIMG/natureIMG_2.png">
-        <img src="./src/img/NatureIMG/natureIMG_3.png">
-        <img src="./src/img/NatureIMG/natureIMG_4.png">
-        <img src="./src/img/NatureIMG/natureIMG_5.png">
-        <img src="./src/img/NatureIMG/natureIMG_9.png">
-        <img src="./src/img/NatureIMG/natureIMG_10.png">
-    </div>
-</section>
-</main>
+            <div class="photo">
+                <figure class="apparition" data-categorie="nature" tabindex="0">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_2.webp" alt="Sommets enneigés" loading="lazy">
+                    <figcaption><span>Nature</span>Sommets enneigés</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="portrait" tabindex="0">
+                    <img width="659" height="987" src="./src/img/PortraitIMG/PortraitIMG_4.webp" alt="Lumière de fin de journée" loading="lazy">
+                    <figcaption><span>Portrait</span>Lumière de fin de journée</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="nature" tabindex="0">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_3.webp" alt="Torrent en pose longue" loading="lazy">
+                    <figcaption><span>Nature</span>Torrent en pose longue</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="nature" tabindex="0">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_5.webp" alt="Cerf dans la prairie" loading="lazy">
+                    <figcaption><span>Nature</span>Cerf dans la prairie</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="portrait" tabindex="0">
+                    <img width="659" height="987" src="./src/img/PortraitIMG/PortraitIMG_1.webp" alt="Pause lecture" loading="lazy">
+                    <figcaption><span>Portrait</span>Pause lecture</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="nature" tabindex="0">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_4.webp" alt="Crêtes au soleil" loading="lazy">
+                    <figcaption><span>Nature</span>Crêtes au soleil</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="portrait" tabindex="0">
+                    <img width="1366" height="912" src="./src/img/PortraitIMG/PortraitIMG_3.webp" alt="Au bord de l'eau" loading="lazy">
+                    <figcaption><span>Portrait</span>Au bord de l'eau</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="nature" tabindex="0">
+                    <img width="1664" height="968" src="./src/img/NatureIMG/natureIMG_9.webp" alt="Sanglier en lisière" loading="lazy">
+                    <figcaption><span>Nature</span>Sanglier en lisière</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="portrait" tabindex="0">
+                    <img width="1226" height="987" src="./src/img/PortraitIMG/PortraitIMG_2.webp" alt="Complicité" loading="lazy">
+                    <figcaption><span>Portrait</span>Complicité</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="nature" tabindex="0">
+                    <img width="1664" height="712" src="./src/img/NatureIMG/natureIMG_10.webp" alt="Lisière de forêt" loading="lazy">
+                    <figcaption><span>Nature</span>Lisière de forêt</figcaption>
+                </figure>
+                <figure class="apparition" data-categorie="portrait" tabindex="0">
+                    <img width="1365" height="914" src="./src/img/PortraitIMG/PortraitIMG_5.webp" alt="Portrait en extérieur" loading="lazy">
+                    <figcaption><span>Portrait</span>Portrait en extérieur</figcaption>
+                </figure>
+            </div>
+            <dialog class="lightbox" aria-label="Visionneuse">
+                <p class="compteur"></p>
+                <figure>
+                    <img src="" alt="">
+                    <figcaption></figcaption>
+                </figure>
+                <button class="fermer" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+                <button class="precedent" aria-label="Photo précédente"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="suivant" aria-label="Photo suivante"><i class="fa-solid fa-arrow-right"></i></button>
+            </dialog>
+        </section>
+    </main>
 </body>
+
 </html>

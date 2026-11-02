@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="src/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
     <title>MTS Photographie</title>
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="src/js/main.js" defer></script>
 </head>
 
 <body>
@@ -17,34 +18,75 @@
             <nav>
                 <div class="top">
                     <div class="logo">
-                        <li>
-                            <p href="">M</p>
-                        </li>
+                        <a href="index.html" aria-label="Accueil">M</a>
                     </div>
                     <ul>
-                        <li><a href="#"><img id="active" src="src/img/icon/houseSelected.svg"></a></li>
-                        <li><a href="portfolio.html"><img src="src/img/icon/bagUnselected.svg"></a></li>
-                        <!-- <li><a href="about.html"><img src="src/img/icon/userUnselected.svg"></a></li> -->
-                        <!-- <li><a href="contact.html"><img src="src/img/icon/mailUnselected.svg"></a></li> -->
+                        <li><a href="#" aria-label="Accueil" aria-current="page"><img id="active" src="src/img/icon/houseSelected.svg" alt=""></a></li>
+                        <li><a href="portfolio.html" aria-label="Portfolio"><img src="src/img/icon/bagUnselected.svg" alt=""></a></li>
+                        <li><a href="services.html" aria-label="Services"><img src="src/img/icon/cameraUnselected.svg" alt=""></a></li>
+                        <li><a href="about.html" aria-label="À propos"><img src="src/img/icon/userUnselected.svg" alt=""></a></li>
+                        <li><a href="contact.html" aria-label="Contact"><img src="src/img/icon/mailUnselected.svg" alt=""></a></li>
                     </ul>
                 </div>
             </nav>
         </div>
         <section>
-            <div class="mainContent">
-                <div class="informations">
-                    <p><i class="fa-solid fa-camera"></i></i>Photographie 2026</p>
-                    <h1>Photographe</h1>
-                    <h1 style="color: grey;">Amateur</h1>
-                    <div class="devise">
-                        <p>La photo au coeur de la nature</p>
+            <div class="mainContent hero">
+                <div class="accroche">
+                    <div class="informations">
+                        <p><i class="fa-solid fa-camera"></i>Photographie 2026</p>
+                        <h1>Photographe <span>Amateur</span></h1>
+                        <div class="devise">
+                            <p>La photo au coeur de la nature</p>
+                        </div>
                     </div>
+                    <a href="portfolio.html" class="discover">
+                        <p>Découvrir mon portfolio</p>
+                        <img src="src/img/icon/rightArrow.svg" alt="">
+                    </a>
                 </div>
-                <a href="portfolio.html" class="discover">
-                    <p>Découvrir mon portfolio</p>
-                    <img src="src/img/icon/rightArrow.svg">
-                </a>
+                <div class="diaporama">
+                    <img width="1479" height="987" class="visible" src="./src/img/NatureIMG/natureIMG_2.webp" alt="Sommets enneigés">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_3.webp" alt="Torrent en pose longue">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_5.webp" alt="Cerf dans la prairie">
+                    <img width="659" height="987" src="./src/img/PortraitIMG/PortraitIMG_4.webp" alt="Lumière de fin de journée">
+                    <img width="1664" height="712" src="./src/img/NatureIMG/natureIMG_10.webp" alt="Lisière de forêt">
+                    <div class="progression">
+                        <span class="actif"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="legende"><span></span><p>Sommets enneigés</p></div>
+                </div>
             </div>
+            <a href="portfolio.html" class="defilement" aria-label="Voir le portfolio">
+                <div class="piste">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_2.webp" alt="" loading="lazy">
+                    <img width="659" height="987" src="./src/img/PortraitIMG/PortraitIMG_4.webp" alt="" loading="lazy">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_3.webp" alt="" loading="lazy">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_5.webp" alt="" loading="lazy">
+                    <img width="659" height="987" src="./src/img/PortraitIMG/PortraitIMG_1.webp" alt="" loading="lazy">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_4.webp" alt="" loading="lazy">
+                    <img width="1366" height="912" src="./src/img/PortraitIMG/PortraitIMG_3.webp" alt="" loading="lazy">
+                    <img width="1664" height="968" src="./src/img/NatureIMG/natureIMG_9.webp" alt="" loading="lazy">
+                    <img width="1226" height="987" src="./src/img/PortraitIMG/PortraitIMG_2.webp" alt="" loading="lazy">
+                    <img width="1664" height="712" src="./src/img/NatureIMG/natureIMG_10.webp" alt="" loading="lazy">
+                    <img width="1365" height="914" src="./src/img/PortraitIMG/PortraitIMG_5.webp" alt="" loading="lazy">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_2.webp" alt="" loading="lazy">
+                    <img width="659" height="987" src="./src/img/PortraitIMG/PortraitIMG_4.webp" alt="" loading="lazy">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_3.webp" alt="" loading="lazy">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_5.webp" alt="" loading="lazy">
+                    <img width="659" height="987" src="./src/img/PortraitIMG/PortraitIMG_1.webp" alt="" loading="lazy">
+                    <img width="1479" height="987" src="./src/img/NatureIMG/natureIMG_4.webp" alt="" loading="lazy">
+                    <img width="1366" height="912" src="./src/img/PortraitIMG/PortraitIMG_3.webp" alt="" loading="lazy">
+                    <img width="1664" height="968" src="./src/img/NatureIMG/natureIMG_9.webp" alt="" loading="lazy">
+                    <img width="1226" height="987" src="./src/img/PortraitIMG/PortraitIMG_2.webp" alt="" loading="lazy">
+                    <img width="1664" height="712" src="./src/img/NatureIMG/natureIMG_10.webp" alt="" loading="lazy">
+                    <img width="1365" height="914" src="./src/img/PortraitIMG/PortraitIMG_5.webp" alt="" loading="lazy">
+                </div>
+            </a>
         </section>
     </main>
 </body>

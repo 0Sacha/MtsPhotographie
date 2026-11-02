@@ -1,37 +1,57 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="src/css/style.css">
-    <title>MTS Photographie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <title>À propos - MTS Photographie</title>
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="src/js/main.js" defer></script>
 </head>
+
 <body>
-<main>
-    <div id="sidebar">
-        <nav>
-            <div class="top">
-                <div class="logo">
-                    <li>
-                        <p href="">M</p>
-                    </li>
+    <main>
+        <div id="sidebar">
+            <nav>
+                <div class="top">
+                    <div class="logo">
+                        <a href="index.html" aria-label="Accueil">M</a>
+                    </div>
+                    <ul>
+                        <li><a href="index.html" aria-label="Accueil"><img src="src/img/icon/houseUnselected.svg" alt=""></a></li>
+                        <li><a href="portfolio.html" aria-label="Portfolio"><img src="src/img/icon/bagUnselected.svg" alt=""></a></li>
+                        <li><a href="services.html" aria-label="Services"><img src="src/img/icon/cameraUnselected.svg" alt=""></a></li>
+                        <li><a href="#" aria-label="À propos" aria-current="page"><img id="active" src="src/img/icon/userSelected.svg" alt=""></a></li>
+                        <li><a href="contact.html" aria-label="Contact"><img src="src/img/icon/mailUnselected.svg" alt=""></a></li>
+                    </ul>
                 </div>
-                <ul>
-                    <li><a href="index.html"><img src="src/img/icon/houseUnselected.svg"></a></li>
-                    <li><a href="portfolio.html"><img src="src/img/icon/bagUnselected.svg"></a></li>
-                    <li><a href="#"><img id="active" src="src/img/icon/userSelected.svg"></a></li>
-                    <li><a href="contact.html"><img src="src/img/icon/mailUnselected.svg"></a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <section>
-        <div class="mainContent">
-                
+            </nav>
         </div>
-    </section>
-</main>
+        <section>
+            <div class="mainContent">
+                <div class="portfolio">
+                    <p class="surtitre">QUI SUIS-JE</p>
+                    <h1>À propos</h1>
+                </div>
+                <div class="about">
+                    <img width="659" height="987" src="./src/img/PortraitIMG/PortraitIMG_1.webp" alt="Portrait">
+                    <div class="texte">
+                        <h2>La photo au coeur de la nature</h2>
+                        <p>Photographe amateur passionné, je parcours les forêts, les montagnes et les sentiers pour saisir la lumière et les détails que l'on ne prend pas toujours le temps de regarder.</p>
+                        <p>Au fil des sorties, je me suis aussi tourné vers le portrait, avec la même envie : des images simples, naturelles et sincères.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-leaf"></i>Nature et paysages</li>
+                            <li><i class="fa-solid fa-user"></i>Portraits en lumière naturelle</li>
+                            <li><i class="fa-solid fa-camera"></i>Événements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
+
 </html>
