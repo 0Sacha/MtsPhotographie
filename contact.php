@@ -30,5 +30,4 @@ require __DIR__ . '/includes/partials/haut.php';
                     </div>
                 </div>
             </div>
-        </section>
 <?php require __DIR__ . '/includes/partials/bas.php';

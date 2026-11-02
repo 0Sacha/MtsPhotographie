@@ -166,10 +166,9 @@ body {
         text-decoration: none;
         transition: color 250ms ease, height 300ms ease;
         -webkit-tap-highlight-color: transparent;
+        // Sur mobile, la barre garde ses 5 boutons : l'accès admin est dans le pied de page
         @media (max-width: $mobile) {
-          flex-shrink: 0;
-          width: 44px;
-          font-size: 13px;
+          display: none;
         }
       }
       .acces-admin:hover,
@@ -181,11 +180,6 @@ body {
         height: 72px;
         color: $accent;
         font-size: 18px;
-        @media (max-width: $mobile) {
-          width: 56px;
-          height: 56px;
-          font-size: 17px;
-        }
         i {
           display: flex;
           justify-content: center;
@@ -195,11 +189,6 @@ body {
           border-radius: 14px;
           background: rgba(63, 107, 71, 0.12);
           transition: background-color 250ms ease, color 250ms ease, transform 200ms cubic-bezier(0.3, 1.6, 0.5, 1);
-          @media (max-width: $mobile) {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-          }
         }
         &:hover i,
         &:focus-visible i {
@@ -228,8 +217,7 @@ body {
           border-bottom-color: $border;
           box-shadow: 0 6px 24px rgba(10, 10, 10, 0.06);
         }
-        &.defile nav .top ul li a,
-        &.defile nav .acces-admin {
+        &.defile nav .top ul li a {
           height: 48px;
         }
         &.cache {
@@ -741,6 +729,59 @@ body {
           filter: grayscale(60%);
         }
       }
+    }
+  }
+}
+
+// Pied de page : infos, contact et accès à l'espace admin
+body main section .pied {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 24px;
+  width: 85%;
+  margin-top: auto;
+  padding: 28px 0 0;
+  border-top: 1px solid $border;
+  color: $grey;
+  font-size: 13px;
+  line-height: 1.5;
+  @media (max-width: $mobile) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-top: 24px;
+  }
+  p {
+    margin: 0;
+  }
+  strong {
+    color: $black;
+    font-weight: 400;
+  }
+  // Colonne de droite sur ordinateur
+  > :nth-child(even) {
+    justify-self: end;
+    @media (max-width: $mobile) {
+      justify-self: start;
+    }
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: $greyText;
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  a:hover {
+    color: $black;
+  }
+  .pied-admin i {
+    font-size: 11px;
+  }
+  .pied-admin.connecte {
+    color: $accent;
+    i {
+      font-size: 13px;
     }
   }
 }

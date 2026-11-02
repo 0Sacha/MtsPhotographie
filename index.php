@@ -55,5 +55,4 @@ foreach ([$bandeau, $bandeau] as $liste): foreach ($liste as $photo): ?>
                 </div>
             </a>
 <?php endif; ?>
-        </section>
 <?php require __DIR__ . '/includes/partials/bas.php';

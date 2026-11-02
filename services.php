@@ -32,5 +32,4 @@ require __DIR__ . '/includes/partials/haut.php';
 <?php endforeach; ?>
                 </div>
             </div>
-        </section>
 <?php require __DIR__ . '/includes/partials/bas.php';

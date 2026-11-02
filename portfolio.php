@@ -53,5 +53,4 @@ require __DIR__ . '/includes/partials/haut.php';
                 <button class="precedent" aria-label="Photo précédente"><i class="fa-solid fa-arrow-left"></i></button>
                 <button class="suivant" aria-label="Photo suivante"><i class="fa-solid fa-arrow-right"></i></button>
             </dialog>
-        </section>
 <?php require __DIR__ . '/includes/partials/bas.php';
