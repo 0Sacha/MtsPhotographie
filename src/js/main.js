@@ -10,6 +10,44 @@ const observateur = new IntersectionObserver((entrees) => {
 
 document.querySelectorAll('.apparition').forEach((element) => observateur.observe(element));
 
+// Barre de navigation mobile : se cache en descendant, réapparaît en remontant
+const sidebar = document.querySelector('#sidebar');
+const mobile = window.matchMedia('(max-width: 900px)');
+
+if (sidebar) {
+    let dernierePosition = Math.max(0, window.scrollY);
+    let enAttente = false;
+
+    const majNavigation = () => {
+        enAttente = false;
+        const position = Math.max(0, window.scrollY);
+        const ecart = position - dernierePosition;
+
+        if (!mobile.matches) {
+            sidebar.classList.remove('defile', 'cache');
+            dernierePosition = position;
+            return;
+        }
+
+        sidebar.classList.toggle('defile', position > 8);
+
+        // Petit seuil pour éviter que la barre clignote sur les micro-défilements
+        if (Math.abs(ecart) > 6) {
+            sidebar.classList.toggle('cache', ecart > 0 && position > sidebar.offsetHeight);
+            dernierePosition = position;
+        }
+    };
+
+    window.addEventListener('scroll', () => {
+        if (!enAttente) {
+            enAttente = true;
+            requestAnimationFrame(majNavigation);
+        }
+    }, { passive: true });
+
+    mobile.addEventListener('change', majNavigation);
+}
+
 // Diaporama de l'accueil
 const diaporama = document.querySelector('.diaporama');
 
