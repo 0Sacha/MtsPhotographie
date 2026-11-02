@@ -1,0 +1,12 @@
+# Configuration Apache (ignorée sans risque si le serveur n'est pas Apache)
+DirectoryIndex index.php
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Anciennes adresses en .html → nouvelles pages PHP
+    RewriteRule ^(index|portfolio|services|about|contact)\.html$ $1.php [R=301,L]
+    # Dossiers et fichiers internes inaccessibles depuis le navigateur
+    RewriteRule ^(includes|sql)(/|$) - [F,L]
+    RewriteRule (^|/)\.(git|idea) - [F,L]
+</IfModule>

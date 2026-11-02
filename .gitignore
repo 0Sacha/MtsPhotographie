@@ -1,0 +1,6 @@
+# Identifiants de la base : jamais dans git
+includes/config.php
+
+# Photos envoyées depuis le dashboard (elles vivent sur le serveur)
+uploads/photos/*
+!uploads/photos/.gitkeep
