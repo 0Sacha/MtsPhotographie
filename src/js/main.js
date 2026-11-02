@@ -1,3 +1,21 @@
+// Statistiques de visite (anonymes, sans cookie) : voir api/track.php
+const suivre = (donnees) => {
+    const corps = JSON.stringify(donnees);
+    try {
+        if (navigator.sendBeacon) {
+            navigator.sendBeacon('api/track.php', new Blob([corps], { type: 'application/json' }));
+        } else {
+            fetch('api/track.php', { method: 'POST', body: corps, keepalive: true, headers: { 'Content-Type': 'application/json' } });
+        }
+    } catch {
+        // Les statistiques ne doivent jamais bloquer le site
+    }
+};
+
+if (document.body.dataset.page) {
+    suivre({ type: 'page', page: document.body.dataset.page, ref: document.referrer });
+}
+
 // Apparition des éléments au défilement
 const observateur = new IntersectionObserver((entrees) => {
     entrees.forEach((entree) => {
@@ -96,6 +114,7 @@ if (lightbox) {
     const compteur = lightbox.querySelector('.compteur');
     let liste = [];
     let position = 0;
+    const photosVues = new Set();
 
     const afficher = (nouvellePosition) => {
         position = (nouvellePosition + liste.length) % liste.length;
@@ -104,6 +123,13 @@ if (lightbox) {
         image.alt = source.alt;
         legende.textContent = source.alt;
         compteur.textContent = `${position + 1} / ${liste.length}`;
+
+        // Chaque photo n'est comptée qu'une fois par visite de la page
+        const id = liste[position].dataset.id;
+        if (id && !photosVues.has(id)) {
+            photosVues.add(id);
+            suivre({ type: 'photo', id: Number(id) });
+        }
     };
 
     const ouvrir = (figure) => {
