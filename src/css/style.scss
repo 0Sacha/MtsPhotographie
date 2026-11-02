@@ -83,59 +83,65 @@ body {
         align-items: center;
         height: 100vh;
         width: 80px;
-        padding: 32px 15.5px;
+        padding: 20px 0;
         @media (max-width: $mobile) {
           height: auto;
           width: 100%;
-          padding: calc(8px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left));
+          padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
           border-right: none;
           border-bottom: 1px solid $border;
         }
         .top {
           display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 48px;
-          @media (max-width: $mobile) {
-            flex-direction: row;
-            width: 100%;
-          }
+          width: 100%;
           ul {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            width: 100%;
             @media (max-width: $mobile) {
               flex-direction: row;
-              justify-content: space-around;
-              width: 100%;
-              gap: 4px;
             }
             li {
               display: flex;
               list-style: none;
+              @media (max-width: $mobile) {
+                flex: 1;
+              }
+              // Le lien occupe toute la case : padding compris, tout est cliquable
               a {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 48px;
-                height: 48px;
-                border-radius: 14px;
+                width: 100%;
+                height: 72px;
                 color: $grey;
                 font-size: 18px;
                 text-decoration: none;
-                transition: background-color 250ms ease, color 250ms ease;
+                cursor: pointer;
                 @media (max-width: $mobile) {
-                  width: 40px;
-                  height: 40px;
-                  border-radius: 12px;
+                  height: 56px;
                   font-size: 17px;
+                }
+                // Pastille visible autour de l'icône
+                i {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 14px;
+                  transition: background-color 250ms ease, color 250ms ease, transform 200ms cubic-bezier(0.3, 1.6, 0.5, 1);
+                  @media (max-width: $mobile) {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 12px;
+                  }
                 }
               }
               a:hover {
                 color: $black;
               }
-              a[aria-current="page"] {
+              a[aria-current="page"] i {
                 background: $black;
                 color: $white;
               }
@@ -152,28 +158,31 @@ body {
           -webkit-backdrop-filter: saturate(180%) blur(16px);
           backdrop-filter: saturate(180%) blur(16px);
           border-bottom-color: transparent;
-          transition: box-shadow 300ms ease, border-color 300ms ease, padding 300ms ease;
+          transition: box-shadow 300ms ease, border-color 300ms ease;
+        }
+        nav .top ul li a {
+          transition: height 300ms ease;
         }
         &.defile nav {
-          padding-top: calc(4px + env(safe-area-inset-top));
-          padding-bottom: 4px;
           border-bottom-color: $border;
           box-shadow: 0 6px 24px rgba(10, 10, 10, 0.06);
+        }
+        &.defile nav .top ul li a {
+          height: 48px;
         }
         &.cache {
           transform: translateY(-100%);
         }
         ul li a {
           -webkit-tap-highlight-color: transparent;
-          transition: background-color 250ms ease, color 250ms ease, transform 200ms cubic-bezier(0.3, 1.6, 0.5, 1);
-          &:active {
+          &:active i {
             transform: scale(0.88);
           }
-          &:not([aria-current]):active {
+          &:not([aria-current]):active i {
             background: rgba(10, 10, 10, 0.06);
           }
         }
-        a[aria-current="page"] {
+        a[aria-current="page"] i {
           animation: navActive 450ms cubic-bezier(0.3, 1.6, 0.5, 1) both;
         }
       }
